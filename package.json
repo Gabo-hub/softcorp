@@ -1,5 +1,5 @@
 {
-  "name": "astroship",
+  "name": "softcorp",
   "type": "module",
   "version": "2.2.0",
   "private": true,
@@ -24,7 +24,9 @@
     "astro-icon": "^1.1.0",
     "astro-navbar": "^2.3.2",
     "astro-seo": "^0.8.3",
+    "astroship": "file:",
     "sharp": "^0.33.4",
+    "softcorp": "file:",
     "tailwindcss": "^3.4.3"
   }
 }
