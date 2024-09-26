@@ -12,6 +12,9 @@ module.exports = {
           ...defaultTheme.fontFamily.sans,
         ],
       },
+      dropShadow: {
+				'white': '0 45px 65px rgba(102, 150, 217, 0.15)'
+			}
     },
   },
   plugins: [require("@tailwindcss/typography")],

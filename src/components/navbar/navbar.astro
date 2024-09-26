@@ -6,26 +6,36 @@ import { Astronav, MenuItems, MenuIcon } from "astro-navbar";
 
 const menuitems = [
   {
-    title: "Features",
+    title: "Servicios",
     path: "#",
     children: [
+      { title: "Servicio 1", path: "/"},
+      { title: "Servicio 2", path: "/"},
+      { title: "Servicio 3", path: "/"},
+      { title: "Servicio 4", path: "/"}  
+    /*
       { title: "Action", path: "/" },
       { title: "Another action", path: "#" },
       { title: "Dropdown Submenu", path: "#" },
       { title: "404 Page", path: "/404" },
+    */
     ],
   },
   {
-    title: "Pricing",
+    title: "Precios",
     path: "/pricing",
   },
   {
-    title: "About",
+    title: "Nosotros",
     path: "/about",
   },
   {
     title: "Blog",
     path: "/blog",
+  },
+  {
+    title: "Contacto",
+    path: "/contact",
   },
   /*
   {
@@ -37,7 +47,7 @@ const menuitems = [
 ---
 
 <Container>
-  <header class="flex flex-col lg:flex-row justify-between items-center my-5 p-4 px-5 bg-[#171D2B] rounded-lg shadow-black/70 shadow-xl">
+  <header class="flex flex-col lg:flex-row justify-between items-center py-4 px-12 bg-[#171D2B] shadow-black/70 shadow-[0_30px_90px_0_rgba(0,0,0,0.1)]">
     <Astronav>
       <div class="flex w-full lg:w-auto items-center justify-between">
         <a href="/" class="text-lg flex flex-row items-center gap-1">
@@ -65,7 +75,7 @@ const menuitems = [
                   <li>
                     <a
                       href={item.path}
-                      class="flex lg:px-3 py-2 items-center text-white hover:text-gray-400 transition-colors duration-300">
+                      class="flex lg:px-3 py-2 items-center text-lg text-white hover:text-gray-400 transition-colors duration-300">
                       <span> {item.title}</span>
                       {'badge' in item && item.badge && (
                         <span class="ml-1 px-2 py-0.5 text-[10px] animate-pulse font-semibold uppercase text-white bg-indigo-600 rounded-full">
@@ -79,16 +89,8 @@ const menuitems = [
             ))
           }
         </ul>
-        <div class="lg:hidden flex items-center mt-3 gap-4">
-          <Link href="/contact" size="md" block>Contactanos</Link>
-        </div>
       </MenuItems>
     </Astronav>
-    <div>
-      <div class="hidden lg:flex items-center gap-4">
-        <Link href="/contact" size="md" class="bg-[#3D5DA8] hover:bg-[#1F3057]">Contactanos</Link>
-      </div>
-    </div>
   </header>
 </Container>
 </Container>
