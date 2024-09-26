@@ -1,0 +1,35 @@
+---
+import Shape from './ui/Shape.astro'
+---
+
+<div class='mt-20 flex items-center justify-center max-w-screen'>
+  <div
+    class='max-w-screen-xl mx-auto flex flex-col md:flex-row items-center justify-center flex-wrap'>
+    <div class='w-full md:w-1/2'>
+      <h2 class='text-4xl font-bold dark:text-white p-8'>
+        Tus <span class='text-[#6C9792]'>ideas</span>, tu <span
+          class='text-[#324140]'>proyecto</span
+        >.
+      </h2>
+      <p class='text-2xl font-normal dark:text-white text-pretty p-8'>
+        ¡No te preocupes por los detalles técnicos! Déjanos guiarte en cada paso
+        del desarrollo de tu nuevo software. Convierte tu visión en realidad con
+        nuestra ayuda experta.
+      </p>
+    </div>
+
+    <div class='md:w-1/2 relative'>
+      <img
+        class='relative w-full md:w-3/4 -top-16 md:-right-32 z-10'
+        src='/MockupPhone.png'
+        alt='Mac'
+      />
+      <div class='absolute top-0 right-0'>
+        <Shape class='size-[200px] md:size-[300px] lg:size-[400px]' />
+        <Shape
+          class='absolute size-[200px] md:size-[300px] lg:size-[400px] -bottom-[300px] right-36'
+        />
+      </div>
+    </div>
+  </div>
+</div>
