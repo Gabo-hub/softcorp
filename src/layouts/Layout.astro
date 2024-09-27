@@ -11,7 +11,7 @@ export interface Props {
 
 const canonicalURL = new URL(Astro.url.pathname, Astro.site).toString()
 
-const resolvedImageWithDomain = new URL('/opengraph.jpg', Astro.site).toString()
+const resolvedImageWithDomain = new URL('/MainMockUp.png', Astro.site).toString()
 
 const { title } = Astro.props
 
@@ -29,7 +29,7 @@ const makeTitle = title
     <!-- <link rel="preload" as="image" href={src} alt="Hero" /> -->
     <SEO
       title={makeTitle}
-      description='Astroship is a starter website template for Astro built with TailwindCSS.'
+      description="SoftCorp: Soluciones de software innovadoras para impulsar tu negocio. Ofrecemos desarrollo personalizado, consultoría tecnológica y servicios de integración de sistemas para optimizar tus procesos y aumentar tu productividad."
       canonical={canonicalURL}
       twitter={{
         creator: '@surjithctly',
@@ -40,11 +40,11 @@ const makeTitle = title
         basic: {
           url: canonicalURL,
           type: 'website',
-          title: `Astroship - Starter Template for Astro`,
+          title: `SoftCorp - Soluciones de software innovadoras para impulsar tu negocio`,
           image: resolvedImageWithDomain
         },
         image: {
-          alt: 'Astroship Homepage Screenshot'
+          alt: 'SoftCorp Imagen de Pagina Principal'
         }
       }}
     />

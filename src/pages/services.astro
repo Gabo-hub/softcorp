@@ -1,0 +1,154 @@
+---
+import Layout from "@layouts/Layout.astro";
+import Container from "@components/container.astro";
+import Sectionhead from "@components/sectionhead.astro";
+
+const services = [
+  {
+    title: "Desarrollo de software empresarial",
+    bg: "#f9b234"
+  },
+  {
+    title: "Desarrollo Web",
+    bg: "#3ecd5e"
+  },
+  {
+    title: "Servicios Técnicos",
+    bg: "#e44002"
+  },
+  {
+    title: "Auditorias de Sistemas",
+    bg: "#952aff"
+  },
+  {
+    title: "Sistema de monitorización",
+    bg: "#cd3e94"
+  },
+  {
+    title: "Gestion de Base de Datos",
+    bg: "#4c49ea"
+  },
+  {
+    title: "Sincronizacion de Datos",
+    bg: "#f9b234"
+  },
+  {
+    title: "Proximamente...",
+    bg: "#3ecd5e"
+  }
+];
+---
+
+<Layout title="Services">
+  <Container>
+    <Sectionhead>
+      <Fragment slot="title">Servicios</Fragment>
+      <Fragment slot="desc">
+        Descubra nuestra gama de servicios diseñados para satisfacer sus necesidades y impulsar su éxito.
+      </Fragment>
+    </Sectionhead>
+
+    <div class="ag-format-container">
+      <div class="ag-courses_box">
+        {services.map((service, index) => (
+          <div class="ag-courses_item">
+            <a href="#" class="ag-courses-item_link">
+              <div class="ag-courses-item_bg" style={`background-color: ${service.bg};`}></div>
+              <div class="ag-courses-item_title">
+                {service.title}
+              </div>
+            </a>
+          </div>
+        ))}
+      </div>
+    </div>
+  </Container>
+</Layout>
+
+<style>
+  .ag-format-container {
+    width: 100%;
+    max-width: 1142px;
+    margin: 0 auto;
+    padding: 0 15px;
+  }
+
+  .ag-courses_box {
+    display: flex;
+    align-items: flex-start;
+    flex-wrap: wrap;
+    padding: 50px 0;
+  }
+
+  .ag-courses_item {
+    flex-basis: calc(33.33333% - 30px);
+    margin: 0 15px 30px;
+    overflow: hidden;
+    border-radius: 28px;
+    box-shadow: 0 10px 8px rgba(0, 0, 0, 0.662);
+  }
+
+  .ag-courses-item_link {
+    display: block;
+    padding: 30px 20px;
+    background-color: #0c1220;
+    overflow: hidden;
+    position: relative;
+    text-decoration: none;
+  }
+
+  .ag-courses-item_link:hover .ag-courses-item_bg {
+    transform: scale(10);
+  }
+
+  .ag-courses-item_title {
+    min-height: 87px;
+    margin: 0 0 25px;
+    overflow: hidden;
+    font-weight: bold;
+    font-size: 30px;
+    color: #FFF;
+    z-index: 2;
+    position: relative;
+  }
+
+  .ag-courses-item_bg {
+    height: 128px;
+    width: 128px;
+    z-index: 1;
+    position: absolute;
+    top: -75px;
+    right: -75px;
+    border-radius: 50%;
+    transition: all .5s ease;
+  }
+
+  @media only screen and (max-width: 979px) {
+    .ag-courses_item {
+      flex-basis: calc(50% - 30px);
+    }
+    .ag-courses-item_title {
+      font-size: 24px;
+    }
+  }
+
+  @media only screen and (max-width: 767px) {
+    .ag-format-container {
+      width: 96%;
+    }
+  }
+
+  @media only screen and (max-width: 639px) {
+    .ag-courses_item {
+      flex-basis: 100%;
+    }
+    .ag-courses-item_title {
+      min-height: 72px;
+      line-height: 1;
+      font-size: 24px;
+    }
+    .ag-courses-item_link {
+      padding: 22px 40px;
+    }
+  }
+</style>

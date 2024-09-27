@@ -2,61 +2,121 @@
 import Button from "./ui/button.astro";
 ---
 
-<!-- To make this contact form work, create your free access key from https://web3forms.com/
-     Then you will get all form submissions in your email inbox. -->
+<!-- Para hacer que este formulario de contacto funcione, crea tu clave de acceso gratuita en https://web3forms.com/
+     Luego recibirás todos los envíos del formulario en tu bandeja de entrada de correo electrónico. -->
 <form
   action="https://api.web3forms.com/submit"
   method="POST"
   id="form"
   class="needs-validation"
   novalidate>
-  <input type="hidden" name="access_key" value="YOUR_ACCESS_KEY_HERE" />
-  <!-- Create your free access key from https://web3forms.com/ -->
+  <input type="hidden" name="access_key" value="TU_CLAVE_DE_ACCESO_AQUÍ" />
+  <!-- Crea tu clave de acceso gratuita en https://web3forms.com/ -->
   <input type="checkbox" class="hidden" style="display:none" name="botcheck" />
-  <div class="mb-5">
+  <div class="mb-5 input-group">
     <input
       type="text"
-      placeholder="Full Name"
+      placeholder="Nombre Completo"
       required
-      class="w-full px-4 py-3 border-2 placeholder:text-gray-800 rounded-md outline-none focus:ring-4 border-gray-300 focus:border-gray-600 ring-gray-100"
+      class="input w-full px-4 py-3 border-2 placeholder:text-gray-800 rounded-md outline-none focus:ring-0 border-gray-300 focus:border-gray-600"
       name="name"
     />
+    <label class="user-label">Nombre Completo</label>
     <div class="empty-feedback invalid-feedback text-red-400 text-sm mt-1">
-      Please provide your full name.
+      Por favor, proporciona tu nombre completo.
     </div>
   </div>
-  <div class="mb-5">
-    <label for="email_address" class="sr-only">Email Address</label><input
+  <div class="mb-5 input-group">
+    <input
       id="email_address"
       type="email"
-      placeholder="Email Address"
+      placeholder="Dirección de Correo Electrónico"
       name="email"
       required
-      class="w-full px-4 py-3 border-2 placeholder:text-gray-800 rounded-md outline-none focus:ring-4 border-gray-300 focus:border-gray-600 ring-gray-100"
+      class="input w-full px-4 py-3 border-2 placeholder:text-gray-800 rounded-md outline-none focus:ring-0 border-gray-300 focus:border-gray-600"
     />
+    <label for="email_address" class="user-label">Dirección de Correo Electrónico</label>
     <div class="empty-feedback text-red-400 text-sm mt-1">
-      Please provide your email address.
+      Por favor, proporciona tu dirección de correo electrónico.
     </div>
     <div class="invalid-feedback text-red-400 text-sm mt-1">
-      Please provide a valid email address.
+      Por favor, proporciona una dirección de correo electrónico válida.
     </div>
   </div>
-  <div class="mb-3">
+  <div class="mb-3 input-group">
     <textarea
       name="message"
       required
-      placeholder="Your Message"
-      class="w-full px-4 py-3 border-2 placeholder:text-gray-800 rounded-md outline-none h-36 focus:ring-4 border-gray-300 focus:border-gray-600 ring-gray-100"
+      placeholder="Tu Mensaje"
+      class="input w-full px-4 py-3 border-2 placeholder:text-gray-800 rounded-md outline-none h-36 focus:ring-0 border-gray-300 focus:border-gray-600"
     ></textarea>
+    <label class="user-label">Tu Mensaje</label>
     <div class="empty-feedback invalid-feedback text-red-400 text-sm mt-1">
-      Please enter your message.
+      Por favor, ingresa tu mensaje.
     </div>
   </div>
-  <Button type="submit" size="lg" block>Send Message</Button>
+  <Button type="submit" size="lg" block class="button type1"></Button>
   <div id="result" class="mt-3 text-center"></div>
 </form>
 
 <style>
+  /* CSS DEL BOTON DE CONFIRMACION */
+  .button {
+  height: 50px;
+  width: 150px;
+  border: none;
+  border-radius: 10px;
+  cursor: pointer;
+  position: relative;
+  overflow: hidden;
+  transition: all 0.5s ease-in-out;
+}
+
+.type1::after {
+  content: "Enviar";
+  height: 50px;
+  width: 150px;
+  background-color: #008080;
+  color: #fff;
+  position: absolute;
+  top: 0%;
+  left: 0%;
+  transform: translateY(50px);
+  font-size: 1.2rem;
+  font-weight: 600;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: all 0.5s ease-in-out;
+}
+
+.type1::before {
+  content: "Contactar";
+  height: 50px;
+  width: 150px;
+  background-color: #fff;
+  color: #008080;
+  position: absolute;
+  top: 0%;
+  left: 0%;
+  transform: translateY(0px) scale(1.2);
+  font-size: 1.2rem;
+  font-weight: 600;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: all 0.5s ease-in-out;
+}
+
+.type1:hover::after {
+  transform: translateY(0) scale(1.2);
+}
+
+.type1:hover::before {
+  transform: translateY(-50px) scale(0) rotate(120deg);
+}
+
+/* CSS DE EL FORMULARIO */
   .invalid-feedback,
   .empty-feedback {
     display: none;
@@ -73,6 +133,52 @@ import Button from "./ui/button.astro";
   .is-invalid,
   .was-validated :invalid {
     border-color: #dc3545;
+  }
+
+  .input-group {
+    position: relative;
+  }
+
+  .input {
+    border: solid 1.5px #9e9e9e;
+    border-radius: 1rem;
+    background: none;
+    padding: 1rem;
+    font-size: 1rem;
+    color: #f5f5f5;
+    transition: border 150ms cubic-bezier(0.4,0,0.2,1);
+  }
+
+  .input:-webkit-autofill,
+  .input:-webkit-autofill:hover,
+  .input:-webkit-autofill:focus,
+  .input:-webkit-autofill:active {
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: #f5f5f5;
+    transition: background-color 5000s ease-in-out 0s;
+    box-shadow: inset 0 0 20px 20px #0D1425;
+  }
+
+  .user-label {
+    position: absolute;
+    left: 15px;
+    color: #e8e8e8;
+    pointer-events: none;
+    transform: translateY(1rem);
+    transition: 150ms cubic-bezier(0.4,0,0.2,1);
+  }
+
+  .input:focus, .input:valid {
+    outline: none;
+    border: 1.5px solid #3FB86F;
+  }
+
+  .input:focus ~ .user-label, .input:valid ~ .user-label {
+    transform: translateY(-50%) scale(0.8);
+    background-color: #0D1425   ;
+    background-color: none;
+    padding: 0 .2em;
+    color: #3FB86F;
   }
 </style>
 
@@ -91,7 +197,7 @@ import Button from "./ui/button.astro";
     const object = Object.fromEntries(formData);
     const json = JSON.stringify(object);
 
-    result.innerHTML = "Sending...";
+    result.innerHTML = "Enviando...";
 
     fetch("https://api.web3forms.com/submit", {
       method: "POST",
@@ -114,7 +220,7 @@ import Button from "./ui/button.astro";
       })
       .catch((error) => {
         console.log(error);
-        result.innerHTML = "Something went wrong!";
+        result.innerHTML = "¡Algo salió mal!";
       })
       .then(function () {
         form.reset();

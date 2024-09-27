@@ -6,6 +6,9 @@ import { Astronav, MenuItems, MenuIcon } from "astro-navbar";
 
 const menuitems = [
   {
+    title:"Servicios",
+    path:"/services"
+    /*
     title: "Servicios",
     path: "#",
     children: [
@@ -13,17 +16,13 @@ const menuitems = [
       { title: "Servicio 2", path: "/"},
       { title: "Servicio 3", path: "/"},
       { title: "Servicio 4", path: "/"}  
-    /*
       { title: "Action", path: "/" },
       { title: "Another action", path: "#" },
       { title: "Dropdown Submenu", path: "#" },
       { title: "404 Page", path: "/404" },
-    */
+    
     ],
-  },
-  {
-    title: "Precios",
-    path: "/pricing",
+    */
   },
   {
     title: "Nosotros",
@@ -62,7 +61,7 @@ const menuitems = [
           {
             menuitems.map((item, index) => (
               <>
-                {item.children && (
+                {('children' in item) && item.children && (
                   <Dropdown
                     title={item.title}
                     children={item.children}
@@ -70,7 +69,7 @@ const menuitems = [
                   />
                 )}
 
-                {!item.children && (
+                {!('children' in item) && (
                   <li>
                     <a
                       href={item.path}
@@ -91,5 +90,6 @@ const menuitems = [
       </MenuItems>
     </Astronav>
   </header>
+</Container>
 </Container>
 </Container>
