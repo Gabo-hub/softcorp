@@ -1,68 +1,75 @@
 ---
-import Layout from "@layouts/Layout.astro";
-import Container from "@components/container.astro";
-import Sectionhead from "@components/sectionhead.astro";
+import Layout from '@layouts/Layout.astro'
+import Container from '@components/container.astro'
+import Sectionhead from '@components/sectionhead.astro'
+import { fade } from 'astro:transitions'
 
 const services = [
   {
-    title: "Desarrollo de software empresarial",
-    bg: "#f9b234"
+    title: 'Desarrollo de software empresarial',
+    bg: '#f9b234'
   },
   {
-    title: "Desarrollo Web",
-    bg: "#3ecd5e"
+    title: 'Desarrollo Web',
+    bg: '#3ecd5e'
   },
   {
-    title: "Servicios Técnicos",
-    bg: "#e44002"
+    title: 'Servicios Técnicos',
+    bg: '#e44002'
   },
   {
-    title: "Auditorias de Sistemas",
-    bg: "#952aff"
+    title: 'Auditorias de Sistemas',
+    bg: '#952aff'
   },
   {
-    title: "Sistema de monitorización",
-    bg: "#cd3e94"
+    title: 'Sistema de monitorización',
+    bg: '#cd3e94'
   },
   {
-    title: "Gestion de Base de Datos",
-    bg: "#4c49ea"
+    title: 'Gestion de Base de Datos',
+    bg: '#4c49ea'
   },
   {
-    title: "Sincronizacion de Datos",
-    bg: "#f9b234"
+    title: 'Sincronizacion de Datos',
+    bg: '#f9b234'
   },
   {
-    title: "Proximamente...",
-    bg: "#3ecd5e"
+    title: 'Proximamente...',
+    bg: '#3ecd5e'
   }
-];
+]
 ---
 
-<Layout title="Services">
-  <Container>
-    <Sectionhead>
-      <Fragment slot="title">Servicios</Fragment>
-      <Fragment slot="desc">
-        Descubra nuestra gama de servicios diseñados para satisfacer sus necesidades y impulsar su éxito.
-      </Fragment>
-    </Sectionhead>
+<Layout title='Services'>
+  <main transition:animate={fade({ duration: '.3s' })}>
+    <Container>
+      <Sectionhead>
+        <Fragment slot='title'>Servicios</Fragment>
+        <Fragment slot='desc'>
+          Descubra nuestra gama de servicios diseñados para satisfacer sus
+          necesidades y impulsar su éxito.
+        </Fragment>
+      </Sectionhead>
 
-    <div class="ag-format-container">
-      <div class="ag-courses_box">
-        {services.map((service, index) => (
-          <div class="ag-courses_item">
-            <a href="#" class="ag-courses-item_link">
-              <div class="ag-courses-item_bg" style={`background-color: ${service.bg};`}></div>
-              <div class="ag-courses-item_title">
-                {service.title}
+      <div class='ag-format-container'>
+        <div class='ag-courses_box'>
+          {
+            services.map((service, index) => (
+              <div class='ag-courses_item'>
+                <a href='#' class='ag-courses-item_link'>
+                  <div
+                    class='ag-courses-item_bg'
+                    style={`background-color: ${service.bg};`}
+                  />
+                  <div class='ag-courses-item_title'>{service.title}</div>
+                </a>
               </div>
-            </a>
-          </div>
-        ))}
+            ))
+          }
+        </div>
       </div>
-    </div>
-  </Container>
+    </Container>
+  </main>
 </Layout>
 
 <style>
@@ -107,7 +114,7 @@ const services = [
     overflow: hidden;
     font-weight: bold;
     font-size: 30px;
-    color: #FFF;
+    color: #fff;
     z-index: 2;
     position: relative;
   }
@@ -120,7 +127,7 @@ const services = [
     top: -75px;
     right: -75px;
     border-radius: 50%;
-    transition: all .5s ease;
+    transition: all 0.5s ease;
   }
 
   @media only screen and (max-width: 979px) {

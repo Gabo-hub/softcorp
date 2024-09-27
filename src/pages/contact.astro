@@ -1,9 +1,10 @@
 ---
-import Contactform from "@components/contactform.astro";
-import Container from "@components/container.astro";
-import Sectionhead from "@components/sectionhead.astro";
-import Layout from "@layouts/Layout.astro";
-import { Icon } from "astro-icon/components";
+import Contactform from '@components/contactform.astro'
+import Container from '@components/container.astro'
+import Sectionhead from '@components/sectionhead.astro'
+import Layout from '@layouts/Layout.astro'
+import { Icon } from 'astro-icon/components'
+import { slide } from 'astro:transitions'
 
 /*
           <div class="flex items-center mt-2 space-x-2 text-gray-600">
@@ -13,44 +14,56 @@ import { Icon } from "astro-icon/components";
 */
 ---
 
-<Layout title="Contacto">
+<Layout title='Contacto'>
   <Container>
-    <Sectionhead>
-      <Fragment slot="title">Contacto</Fragment>
-      <Fragment slot="desc">Estamos aquí para ayudar.</Fragment>
-    </Sectionhead>
+    <main transition:animate={slide({ duration: '.5s' })}>
+      <Sectionhead>
+        <Fragment slot='title'>Contacto</Fragment>
+        <Fragment slot='desc'>Estamos aquí para ayudar.</Fragment>
+      </Sectionhead>
 
-    <div class="contenedor-form grid md:grid-cols-2 gap-10 mx-auto max-w-[90%] p-16 mt-16">
-      <div>
-        <h2 class="font-medium text-4xl text-white">Contacta a <span style="color: #1E874B;">SoftCorp</span></h2>
-        <p class="text-lg leading-relaxed text-white mt-3">
-          ¿Necesitas soluciones tecnológicas para tu empresa? En SoftCorp estamos listos para ayudarte. 
-          Ya sea que busques desarrollo de software empresarial, desarrollo web, servicios técnicos, 
-          auditorías de sistemas o sistemas de monitorización, nuestro equipo de expertos está a tu disposición. 
-          Contáctanos y descubre cómo podemos impulsar tu negocio con tecnología de vanguardia.
-        </p>
-        <div class="mt-5">
-          <div class="flex items-center mt-2 space-x-2 text-white">
-            <Icon class="text-gray-400 w-4 h-4" name="uil:envelope" />
-            <a href="mailto:softcorpve@gmail.com" class="text-[#46D3D3] text-xl">softcorpve@gmail.com</a>
-          </div>
-          <div class="flex items-center mt-2 space-x-2 text-white">
-            <Icon class="text-gray-400 w-4 h-4" name="uil:phone" />
-            <a href="tel:+58 (426) 411 2501" class="text-[#46D3D3] text-xl">+58 (426) 411 2501</a>
+      <section
+        class='contenedor-form grid md:grid-cols-2 gap-10 mx-auto max-w-[90%] p-16 mt-16'>
+        <div>
+          <h2 class='font-medium text-4xl text-white'>
+            Contacta a <span style='color: #1E874B;'>SoftCorp</span>
+          </h2>
+          <p class='text-lg leading-relaxed text-white mt-3'>
+            ¿Necesitas soluciones tecnológicas para tu empresa? En SoftCorp
+            estamos listos para ayudarte. Ya sea que busques desarrollo de
+            software empresarial, desarrollo web, servicios técnicos, auditorías
+            de sistemas o sistemas de monitorización, nuestro equipo de expertos
+            está a tu disposición. Contáctanos y descubre cómo podemos impulsar
+            tu negocio con tecnología de vanguardia.
+          </p>
+          <div class='mt-5'>
+            <div class='flex items-center mt-2 space-x-2 text-white'>
+              <Icon class='text-gray-400 w-4 h-4' name='uil:envelope' />
+              <a
+                href='mailto:softcorpve@gmail.com'
+                class='text-[#46D3D3] text-xl'>softcorpve@gmail.com</a
+              >
+            </div>
+            <div class='flex items-center mt-2 space-x-2 text-white'>
+              <Icon class='text-gray-400 w-4 h-4' name='uil:phone' />
+              <a href='tel:+58 (426) 411 2501' class='text-[#46D3D3] text-xl'
+                >+58 (426) 411 2501</a
+              >
+            </div>
           </div>
         </div>
-      </div>
-      <div>
-        <Contactform />
-      </div>
-    </div>
+        <div>
+          <Contactform />
+        </div>
+      </section>
+    </main>
   </Container>
 </Layout>
 
 <style>
   .contenedor-form {
     border-radius: 42px;
-    background: linear-gradient(145deg, #0b111f, #0F172A);
+    background: linear-gradient(145deg, #0b111f, #0f172a);
     box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
     color: black;
     transition: all 0.3s ease;

@@ -1,46 +1,52 @@
 ---
-import { getCollection } from "astro:content";
-import { Picture } from "astro:assets";
-import Layout from "@layouts/Layout.astro";
-import Container from "@components/container.astro";
-import Sectionhead from "@components/sectionhead.astro";
-import Person from "@components/ui/personIcon.astro"
+import { getCollection } from 'astro:content'
+import { Picture } from 'astro:assets'
+import Layout from '@layouts/Layout.astro'
+import Container from '@components/container.astro'
+import Sectionhead from '@components/sectionhead.astro'
+import Person from '@components/ui/personIcon.astro'
+import { slide } from 'astro:transitions'
 ---
 
-<Layout title="About">
+<Layout title='About'>
   <Container>
-    <Sectionhead>
-      <Fragment slot="title">Nosotros</Fragment>
-      <Fragment slot="desc" >Somos un equipo pequeño y apasionado.</Fragment>
-    </Sectionhead>
-    <div class=" flex flex-col justify-center items-center mb-24">
-      <p class="max-w-4xl mx-auto  mt-16 text-xl leading-relaxed text-semibold text-gray-200 text-pretty">
-        Un equipo superdinámico y apasionado, compuesto por talentosos programadores que se encuentran en la intersección de la creatividad y la ingeniería. Su enfoque en la exploración de nuevas tecnologías y el aprendizaje continuo les permite dar vida a ideas audaces y originales. 
+    <div
+      class='flex flex-col justify-center items-center mb-24'
+      transition:animate={slide({ duration: '.5s' })}>
+      <Sectionhead>
+        <Fragment slot='title'>Nosotros</Fragment>
+        <Fragment slot='desc'>Somos un equipo pequeño y apasionado.</Fragment>
+      </Sectionhead>
+      <p
+        class='max-w-4xl mx-auto mt-16 text-xl leading-relaxed text-semibold text-gray-200 text-pretty'>
+        Un equipo superdinámico y apasionado, compuesto por talentosos
+        programadores que se encuentran en la intersección de la creatividad y
+        la ingeniería. Su enfoque en la exploración de nuevas tecnologías y el
+        aprendizaje continuo les permite dar vida a ideas audaces y originales.
       </p>
-      <div class="flex gap-x-24 mt-24 juftify-center items-center mx-auto max-w-4xl">
+      <div
+        class='flex gap-x-24 mt-24 juftify-center items-center mx-auto max-w-4xl'>
         <div>
-          <div class="w-full">
-            <Person class="text-white size-[200px]"/>
+          <div class='w-full'>
+            <Person class='text-white size-[200px]' />
           </div>
-  
-          <div class="text-center">
-            <h2 class="text-2xl font-semibold text-gray-200">Gabriel gomez</h2>
-            <h3 class="text-sm text-gray-400"> Desarrollador FullStack
-            </h3>
+
+          <div class='text-center'>
+            <h2 class='text-2xl font-semibold text-gray-200'>Gabriel gomez</h2>
+            <h3 class='text-sm text-gray-400'>Desarrollador FullStack</h3>
           </div>
         </div>
         <div>
-          <div class="w-full">
-            <Person class="text-white size-[200px]"/>
+          <div class='w-full'>
+            <Person class='text-white size-[200px]' />
           </div>
-  
-          <div class="text-center">
-            <h2 class="text-2xl font-semibold text-gray-200">Jhonny Ramos</h2>
-            <h3 class="text-sm text-gray-400"> Desarrollador FullStack
-            </h3>
+
+          <div class='text-center'>
+            <h2 class='text-2xl font-semibold text-gray-200'>Jhonny Ramos</h2>
+            <h3 class='text-sm text-gray-400'>Desarrollador FullStack</h3>
           </div>
         </div>
       </div>
-    </div>   
+    </div>
   </Container>
 </Layout>

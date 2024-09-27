@@ -7,15 +7,18 @@ import Logos from '@components/logos.astro'
 import Companies from '@components/companies.astro'
 import Desktop from '@components/desktop.astro'
 import Layout from '@layouts/Layout.astro'
+import { slide } from 'astro:transitions'
 ---
 
 <Layout title='SoftCorp'>
-  <Container>
-    <HeadContent />
-    <Companies />
-    <YourProject />
-    <Logos />
-    <Desktop />
-    <Cta />
-  </Container>
+  <main transition:animate={slide({ duration: '.5s' })}>
+    <Container>
+      <HeadContent />
+      <Companies />
+      <YourProject />
+      <Logos />
+      <Desktop />
+      <Cta />
+    </Container>
+  </main>
 </Layout>

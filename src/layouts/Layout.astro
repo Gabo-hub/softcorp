@@ -3,6 +3,7 @@ import { SEO } from 'astro-seo'
 import Footer from '@components/footer.astro'
 import Navbar from '@components/navbar/navbar.astro'
 import '@fontsource-variable/inter/index.css'
+import { ViewTransitions } from 'astro:transitions'
 //import '@fontsource-variable/bricolage-grotesque';
 
 export interface Props {
@@ -11,7 +12,10 @@ export interface Props {
 
 const canonicalURL = new URL(Astro.url.pathname, Astro.site).toString()
 
-const resolvedImageWithDomain = new URL('/MainMockUp.png', Astro.site).toString()
+const resolvedImageWithDomain = new URL(
+  '/MainMockUp.png',
+  Astro.site
+).toString()
 
 const { title } = Astro.props
 
@@ -25,11 +29,12 @@ const makeTitle = title
     <meta name='viewport' content='width=device-width' />
     <link rel='icon' type='image/svg+xml' href='/favicon.svg' />
     <meta name='generator' content={Astro.generator} />
+    <ViewTransitions />
 
     <!-- <link rel="preload" as="image" href={src} alt="Hero" /> -->
     <SEO
       title={makeTitle}
-      description="SoftCorp: Soluciones de software innovadoras para impulsar tu negocio. Ofrecemos desarrollo personalizado, consultoría tecnológica y servicios de integración de sistemas para optimizar tus procesos y aumentar tu productividad."
+      description='SoftCorp: Soluciones de software innovadoras para impulsar tu negocio. Ofrecemos desarrollo personalizado, consultoría tecnológica y servicios de integración de sistemas para optimizar tus procesos y aumentar tu productividad.'
       canonical={canonicalURL}
       twitter={{
         creator: '@surjithctly',
