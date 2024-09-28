@@ -1,0 +1,168 @@
+---
+import { Picture } from "astro:assets";
+interface Card {
+  image: {
+    src: string;
+    alt: string;
+  };
+  title: string;
+  status: string;
+  description: string;
+  href: string;
+  tags: string[];
+}
+
+interface Props {
+  card: Card;
+  index: number;
+}
+
+const { card, index } = Astro.props;
+---
+
+<li id={index.toString()} class="card-item">
+  <a href={card.href} class="card">
+    <Picture
+      src={card.image.src}
+      alt={card.image.alt}
+      width={1200}
+      height={600}
+      loading={index <= 2 ? "eager" : "lazy"}
+      decoding={index <= 2 ? "sync" : "async"}
+      class="card__image"
+    />
+    <div class="card__overlay">
+      <div class="card__header">
+        <svg class="card__arc" xmlns="http://www.w3.org/2000/svg"><path /></svg>                     
+        <div class="card__header-text">
+          <h3 class="card__title">{card.title}</h3>            
+          <div class="card__status-tags">
+            <span class="card__status">{card.status}</span>
+            {card.tags.map((tag) => (
+              <span class="card__tag">{tag}</span>
+            ))}
+          </div>
+        </div>
+      </div>
+      <div class="card__description">
+        <p>{card.description}</p>
+      </div>
+    </div>
+  </a>      
+</li>
+
+<style>
+  :root {
+    --surface-color: #0C1220;
+    --curve: 30;
+  }
+
+  * {
+    box-sizing: border-box;
+  }
+
+  .card-item {
+    width: 100%;
+    max-width: 600px;
+    margin: 0 auto;
+    padding: 1rem;
+  }
+
+  .card {
+    position: relative;
+    display: block;
+    height: 100%;  
+    border-radius: calc(var(--curve) * 1px);
+    overflow: hidden;
+    text-decoration: none;
+  }
+
+  .card__image {      
+    width: 100%;
+    height: auto;
+  }
+
+  .card__overlay {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    z-index: 1;      
+    border-radius: calc(var(--curve) * 1px);    
+    background-color: var(--surface-color);      
+    transform: translateY(100%);
+    transition: .2s ease-in-out;
+  }
+
+  .card:hover .card__overlay {
+    transform: translateY(0);
+  }
+
+  .card__header {
+    position: relative;
+    overflow: auto;
+    display: flex;
+    align-items: center;
+    gap: 1.5em;
+    padding: 1.5em;
+    border-radius: calc(var(--curve) * 1px) 0 0 0;    
+    background-color: var(--surface-color);
+    transform: translateY(-100%);
+    transition: .2s ease-in-out;
+  }
+
+  .card__arc {
+    width: 60px;
+    height: 60px;
+    position: absolute;
+    bottom: 100%;
+    right: 0;      
+    z-index: 1;
+  }
+
+  .card__arc path {
+    fill: var(--surface-color);
+    d: path("M 30 60 c 16.5 0 30 -16.5 30 -30 v 30 Z");
+  }       
+
+  .card:hover .card__header {
+    transform: translateY(0);
+  }
+
+  .card__title {
+    font-size: 1em;
+    margin: 0 0 .3em;
+    color: #fff;
+  }
+
+  .card__status-tags {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.5em;
+    align-items: center;
+  }
+
+  .card__status {
+    font-size: 0.7em;
+    color: #fff;
+  }
+
+  .card__tag {
+    font-size: 0.8em;
+    color: #000000;
+    background-color: rgba(215, 189, 202, 0.938);
+    padding: 0.2em 0.5em;
+    border-radius: 0.5em;
+  }
+
+  .card__description {
+    padding: 0 1.5em 1.5em;
+    margin: 0;
+    color: #ddc9c9;
+    font-size: 0.9em;
+  }
+
+  .card__description p {
+    margin: 0;
+  }
+</style>
