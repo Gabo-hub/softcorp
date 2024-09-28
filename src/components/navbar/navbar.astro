@@ -73,7 +73,8 @@ const menuitems = [
                   <li class="group relative">
                     <a
                       href={item.path}
-                      class="flex lg:px-3 pt-2 pb-1 items-center text-lg text-white transition-colors duration-300">
+                      class={`flex lg:px-3 pt-2 pb-1 items-center text-lg text-white transition-colors duration-300 ${Astro.url.pathname === item.path ? 'active' : ''}`}
+                    >
                       <span> {item.title}</span>
                       {'badge' in item && item.badge && (
                         <span class="ml-1 px-2 py-0.5 text-[10px] animate-pulse font-semibold uppercase text-white bg-indigo-600 rounded-full">
@@ -81,7 +82,7 @@ const menuitems = [
                         </span>
                       )}
                     </a>
-                    <span class="absolute bottom-0 left-0 w-0 h-[2px] bg-green-500 transition-all duration-300 group-hover:w-full"></span>
+                    <span class={`absolute bottom-0 left-0 w-0 h-[2px] bg-green-500 transition-all duration-300 group-hover:w-full ${Astro.url.pathname === item.path ? 'w-full' : ''}`}></span>
                   </li>
                 )}
               </>
@@ -94,21 +95,22 @@ const menuitems = [
 </Container>
 
 <script>
-  let prevScrollPos = window.pageYOffset;
-  const navbar = document.getElementById('navbar');
-  
-  window.onscroll = function() {
-    const currentScrollPos = window.pageYOffset;
+  document.addEventListener('DOMContentLoaded', () => {
+    let prevScrollPos = window.pageYOffset;
+    const navbar = document.getElementById('navbar');
     
-    if (navbar) {
-      if (prevScrollPos > currentScrollPos) {
-        navbar.style.top = "0";
-      } else {
-        navbar.style.top = "-100px";
+    window.onscroll = function() {
+      const currentScrollPos = window.pageYOffset;
+      
+      if (navbar) {
+        if (prevScrollPos > currentScrollPos) {
+          navbar.style.top = "0";
+        } else {
+          navbar.style.top = "-100px";
+        }
       }
+      
+      prevScrollPos = currentScrollPos;
     }
-    
-    prevScrollPos = currentScrollPos;
-  }
+  });
 </script>
-
