@@ -3,6 +3,7 @@ import Layout from '@layouts/Layout.astro'
 import Container from '@components/container.astro'
 import Sectionhead from '@components/sectionhead.astro'
 import { fade } from 'astro:transitions'
+import ServiceCard from '@components/serviceCard.astro'
 
 const services = [
   {
@@ -41,7 +42,9 @@ const services = [
 ---
 
 <Layout title='Services'>
-  <main transition:animate={fade({ duration: '.3s' })}>
+  <main
+    transition:animate={fade({ duration: '.3s' })}
+    class='service-container'>
     <Container>
       <Sectionhead>
         <Fragment slot='title'>Servicios</Fragment>
@@ -55,34 +58,36 @@ const services = [
         <div class='ag-courses_box'>
           {
             services.map((service, index) => (
-            <div
-            class={`ag-courses_item`}
-            onmouseover={`
+              <div
+                class={`ag-courses_item`}
+                onmouseover={`
               const element = document.querySelectorAll('.ag-courses_item')[${index}];
               if (element) {
                 element.style.boxShadow = '0px 0px 25px ${service.bg}';
                 element.style.transition = 'all 0.5s ease';
               }
             `}
-            onmouseleave={`
+                onmouseleave={`
               const element = document.querySelectorAll('.ag-courses_item')[${index}];
               if (element) {
                 element.style.boxShadow =  '0 10px 8px rgba(0, 0, 0, 0.662)';
                 element.style.transition = 'all 0.5s ease';
               }
-            `}
-          >
-                <a href='#' class='ag-courses-item_link'>
+            `}>
+                <div class='ag-courses-item_link'>
                   <div
                     class='ag-courses-item_bg'
                     style={`background-color: ${service.bg};`}
                   />
                   <div class='ag-courses-item_title'>{service.title}</div>
-                </a>
+                </div>
               </div>
             ))
           }
         </div>
+        <ServiceCard
+          class='service-card p-4 w-screen h-full hidden z-20 rounded-lg bg-gray-700/80 fixed left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2 justify-center items-center'
+        />
       </div>
     </Container>
   </main>
@@ -107,7 +112,7 @@ const services = [
     flex-basis: calc(33.33333% - 30px);
     margin: 0 15px 30px;
     overflow: hidden;
-    border: 2px solid #0F172A;
+    border: 2px solid #0f172a;
     border-radius: 28px;
     box-shadow: 0 10px 8px rgba(0, 0, 0, 0.662);
   }
@@ -176,3 +181,16 @@ const services = [
     }
   }
 </style>
+
+<script>
+  const service = document.querySelectorAll('.ag-courses_item')
+  const container = document.querySelector('.service-container')
+  const serviceCard = document.querySelector('.service-card')
+
+  service?.forEach(item =>
+    item.addEventListener('click', () => {
+      console.log('hola')
+      serviceCard?.classList.replace('hidden', 'flex')
+    })
+  )
+</script>
