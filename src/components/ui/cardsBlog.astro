@@ -21,34 +21,36 @@ const { card, index } = Astro.props;
 ---
 
 <li id={index.toString()} class="card-item">
-  <a href={card.href} class="card">
-    <Picture
-      src={card.image.src}
-      alt={card.image.alt}
-      width={1200}
-      height={600}
-      loading={index <= 2 ? "eager" : "lazy"}
-      decoding={index <= 2 ? "sync" : "async"}
-      class="card__image"
-    />
-    <div class="card__overlay">
-      <div class="card__header">
-        <svg class="card__arc" xmlns="http://www.w3.org/2000/svg"><path /></svg>                     
-        <div class="card__header-text">
-          <h3 class="card__title">{card.title}</h3>            
-          <div class="card__status-tags">
-            <span class="card__status">{card.status}</span>
-            {card.tags.map((tag) => (
-              <span class="card__tag">{tag}</span>
-            ))}
+  <article class="card">
+    <a href={card.href} aria-label={`Leer más sobre ${card.title}`}>
+      <Picture
+        src={card.image.src}
+        alt={card.image.alt}
+        width={1200}
+        height={600}
+        loading={index <= 2 ? "eager" : "lazy"}
+        decoding={index <= 2 ? "sync" : "async"}
+        class="card__image"
+      />
+      <div class="card__overlay">
+        <header class="card__header">
+          <svg class="card__arc" xmlns="http://www.w3.org/2000/svg" aria-hidden="true"><path /></svg>                     
+          <div class="card__header-text">
+            <h2 class="card__title">{card.title}</h2>            
+            <div class="card__status-tags">
+              <span class="card__status">{card.status}</span>
+              {card.tags.map((tag) => (
+                <span class="card__tag">{tag}</span>
+              ))}
+            </div>
           </div>
+        </header>
+        <div class="card__description">
+          <p>{card.description}</p>
         </div>
       </div>
-      <div class="card__description">
-        <p>{card.description}</p>
-      </div>
-    </div>
-  </a>      
+    </a>      
+  </article>
 </li>
 
 <style>
