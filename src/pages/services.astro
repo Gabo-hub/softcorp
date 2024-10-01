@@ -1,6 +1,7 @@
 ---
-import Layout from '@layouts/Layout.astro'
+import ServiceLayout from '@layouts/ServiceLayout.astro'
 import Container from '@components/container.astro'
+import Footer from '@components/footer.astro'
 import Sectionhead from '@components/sectionhead.astro'
 import { fade } from 'astro:transitions'
 import ServiceCard from '@components/serviceCard.astro'
@@ -8,40 +9,48 @@ import ServiceCard from '@components/serviceCard.astro'
 const services = [
   {
     title: 'Desarrollo de software empresarial',
-    bg: '#f9b234'
+    bg: '#f9b234',
+    description: `¿Su empresa busca optimizar sus procesos y aumentar su productividad? Con nuestro servicio de desarrollo de software empresarial, creamos soluciones tecnológicas a medida que se adaptan perfectamente a las necesidades únicas de su negocio. Desde la automatización de tareas repetitivas hasta la integración de sistemas existentes, le ofrecemos herramientas poderosas para tomar mejores decisiones y alcanzar sus objetivos.`
   },
   {
     title: 'Desarrollo Web',
-    bg: '#3ecd5e'
+    bg: '#3ecd5e',
+    description: `¿Necesitas un sitio web que crezca contigo? Construimos sitios web escalables y fáciles de administrar. Nuestras plataformas te permiten actualizar tu contenido de forma sencilla y gestionar tu presencia en línea de manera eficiente. Además, ofrecemos servicios de mantenimiento para garantizar el correcto funcionamiento de tu sitio web`
   },
   {
     title: 'Servicios Técnicos',
-    bg: '#e44002'
+    bg: '#e44002',
+    description: `¿Tu equipo tecnológico te está dando dolores de cabeza? Nuestros servicios técnicos te ofrecen soluciones rápidas y eficaces a todos tus problemas informáticos. Desde la reparación de computadoras hasta la configuración de redes, contamos con un equipo de expertos altamente capacitado para mantener tu tecnología funcionando al máximo rendimiento.`
   },
   {
     title: 'Auditorias de Sistemas',
-    bg: '#952aff'
+    bg: '#952aff',
+    description: `¿Buscas optimizar el rendimiento de tus sistemas y reducir costos? Nuestras auditorías de sistemas te permiten identificar ineficiencias, cuellos de botella y áreas de mejora en tu infraestructura tecnológica. Te proporcionamos un plan de acción para optimizar tus procesos, aumentar la eficiencia y maximizar tu inversión en tecnología.`
   },
   {
     title: 'Sistema de monitorización',
-    bg: '#cd3e94'
+    bg: '#cd3e94',
+    description: `¿Busca maximizar el rendimiento de sus sistemas y tomar decisiones basadas en datos? Nuestro servicio de monitoreo de sistemas le proporciona información en tiempo real sobre el estado de su infraestructura. Con estos datos, podrá identificar cuellos de botella, optimizar recursos y mejorar la eficiencia de sus operaciones.`
   },
   {
     title: 'Gestion de Base de Datos',
-    bg: '#4c49ea'
+    bg: '#4c49ea',
+    description: `¿Quiere maximizar el rendimiento de sus bases de datos y garantizar la disponibilidad de sus datos? Nuestros servicios de gestión de bases de datos se encargan de optimizar la estructura y el rendimiento de sus bases de datos, asegurando un acceso rápido y confiable a la información.`
   },
   {
     title: 'Sincronizacion de Datos',
-    bg: '#f9b234'
+    bg: '#f9b234',
+    description: `¿Quiere asegurar que sus datos estén siempre actualizados y sean consistentes en todos sus sistemas? Nuestros servicios de sincronización de datos garantizan que los cambios realizados en una base de datos se reflejen automáticamente en todas las demás, eliminando la duplicación de datos y asegurando la integridad de la información.`
   },
   {
     title: 'Proximamente...',
-    bg: '#3ecd5e'
+    bg: '#3ecd5e',
+    description: `Proximamente...`
   }
 ]
 ---
 
-<Layout title='Services'>
+<ServiceLayout title='Services'>
   <main
     transition:animate={fade({ duration: '.3s' })}
     class='service-container'>
@@ -58,7 +67,8 @@ const services = [
         <div class='ag-courses_box'>
           {
             services.map((service, index) => (
-              <div
+              <a
+                href='/contact'
                 class={`ag-courses_item`}
                 onmouseover={`
               const element = document.querySelectorAll('.ag-courses_item')[${index}];
@@ -81,17 +91,15 @@ const services = [
                   />
                   <div class='ag-courses-item_title'>{service.title}</div>
                 </div>
-              </div>
+              </a>
             ))
           }
         </div>
-        <ServiceCard
-          class='service-card p-4 w-screen h-full hidden z-20 rounded-lg bg-gray-700/80 fixed left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2 justify-center items-center'
-        />
       </div>
     </Container>
+    <Footer />
   </main>
-</Layout>
+</ServiceLayout>
 
 <style>
   .ag-format-container {
@@ -181,16 +189,3 @@ const services = [
     }
   }
 </style>
-
-<script>
-  const service = document.querySelectorAll('.ag-courses_item')
-  const container = document.querySelector('.service-container')
-  const serviceCard = document.querySelector('.service-card')
-
-  service?.forEach(item =>
-    item.addEventListener('click', () => {
-      console.log('hola')
-      serviceCard?.classList.replace('hidden', 'flex')
-    })
-  )
-</script>
