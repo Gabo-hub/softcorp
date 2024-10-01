@@ -10,7 +10,7 @@ const services = [
   {
     title: 'Desarrollo de software empresarial',
     bg: '#f9b234',
-    description: `¿Su empresa busca optimizar sus procesos y aumentar su productividad? Con nuestro servicio de desarrollo de software empresarial, creamos soluciones tecnológicas a medida que se adaptan perfectamente a las necesidades únicas de su negocio. Desde la automatización de tareas repetitivas hasta la integración de sistemas existentes, le ofrecemos herramientas poderosas para tomar mejores decisiones y alcanzar sus objetivos.`
+    description: `¿Cansado de procesos manuales y repetitivos? Nuestro equipo crea soluciones tecnológicas personalizadas que se adaptan a tu empresa como un guante. Automatizamos tareas, integramos tus sistemas y te proporcionamos herramientas para tomar decisiones más inteligentes. ¡Aumenta tu productividad y alcanza tus objetivos más rápido!`
   },
   {
     title: 'Desarrollo Web',
@@ -63,35 +63,14 @@ const services = [
         </Fragment>
       </Sectionhead>
 
-      <div class='ag-format-container'>
-        <div class='ag-courses_box'>
+      <div>
+        <div class='flex justify-center gap-4 flex-wrap w-full p-12'>
           {
             services.map((service, index) => (
-              <a
-                href='/contact'
-                class={`ag-courses_item`}
-                onmouseover={`
-              const element = document.querySelectorAll('.ag-courses_item')[${index}];
-              if (element) {
-                element.style.boxShadow = '0px 0px 25px ${service.bg}';
-                element.style.transition = 'all 0.5s ease';
-              }
-            `}
-                onmouseleave={`
-              const element = document.querySelectorAll('.ag-courses_item')[${index}];
-              if (element) {
-                element.style.boxShadow =  '0 10px 8px rgba(0, 0, 0, 0.662)';
-                element.style.transition = 'all 0.5s ease';
-              }
-            `}>
-                <div class='ag-courses-item_link'>
-                  <div
-                    class='ag-courses-item_bg'
-                    style={`background-color: ${service.bg};`}
-                  />
-                  <div class='ag-courses-item_title'>{service.title}</div>
-                </div>
-              </a>
+              <ServiceCard
+                title={service.title}
+                description={service.description}
+              />
             ))
           }
         </div>
@@ -100,92 +79,3 @@ const services = [
     <Footer />
   </main>
 </ServiceLayout>
-
-<style>
-  .ag-format-container {
-    width: 100%;
-    max-width: 1280px;
-    margin: 0 auto;
-    padding: 0 15px;
-  }
-
-  .ag-courses_box {
-    display: flex;
-    align-items: flex-start;
-    flex-wrap: wrap;
-    padding: 50px 0;
-  }
-
-  .ag-courses_item {
-    flex-basis: calc(33.33333% - 30px);
-    margin: 0 15px 30px;
-    overflow: hidden;
-    border: 2px solid #0f172a;
-    border-radius: 28px;
-    box-shadow: 0 10px 8px rgba(0, 0, 0, 0.662);
-  }
-
-  .ag-courses-item_link {
-    display: block;
-    padding: 30px 20px;
-    background-color: #0c1220;
-    overflow: hidden;
-    position: relative;
-    text-decoration: none;
-  }
-
-  .ag-courses-item_link:hover .ag-courses-item_bg {
-    transform: scale(10);
-  }
-
-  .ag-courses-item_title {
-    min-height: 87px;
-    margin: 0 0 25px;
-    overflow: hidden;
-    font-weight: bold;
-    font-size: 30px;
-    color: #fff;
-    z-index: 2;
-    position: relative;
-  }
-
-  .ag-courses-item_bg {
-    height: 128px;
-    width: 128px;
-    z-index: 1;
-    position: absolute;
-    top: -75px;
-    right: -75px;
-    border-radius: 50%;
-    transition: all 0.5s ease;
-  }
-
-  @media only screen and (max-width: 979px) {
-    .ag-courses_item {
-      flex-basis: calc(50% - 30px);
-    }
-    .ag-courses-item_title {
-      font-size: 24px;
-    }
-  }
-
-  @media only screen and (max-width: 767px) {
-    .ag-format-container {
-      width: 96%;
-    }
-  }
-
-  @media only screen and (max-width: 639px) {
-    .ag-courses_item {
-      flex-basis: 100%;
-    }
-    .ag-courses-item_title {
-      min-height: 72px;
-      line-height: 1;
-      font-size: 24px;
-    }
-    .ag-courses-item_link {
-      padding: 22px 40px;
-    }
-  }
-</style>

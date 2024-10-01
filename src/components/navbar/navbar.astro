@@ -1,13 +1,13 @@
 ---
-import Container from "@components/container.astro";
-import Link from "@components/ui/link.astro";
-import Dropdown from "./dropdown.astro";
-import { Astronav, MenuItems, MenuIcon } from "astro-navbar";
+import Container from '@components/container.astro'
+import Link from '@components/ui/link.astro'
+import Dropdown from './dropdown.astro'
+import { Astronav, MenuItems, MenuIcon } from 'astro-navbar'
 
 const menuitems = [
   {
-    title:"Servicios",
-    path:"/services"
+    title: 'Servicios',
+    path: '/services'
     /*
     title: "Servicios",
     path: "#",
@@ -25,43 +25,68 @@ const menuitems = [
     */
   },
   {
-    title: "Nosotros",
-    path: "/about",
+    title: 'Nosotros',
+    path: '/about'
   },
+  /*
   {
     title: "Blog",
     path: "/blog",
   },
+  */
   {
-    title: "Contacto",
-    path: "/contact",
-  },
+    title: 'Contacto',
+    path: '/contact'
+  }
   /*
   {
     title: "Pro Version",
     badge: true,
     path: "https://astroship-pro.web3templates.com/",
   },*/
-];
+]
 ---
 
 <Container>
-  <header id="navbar" class="fixed w-full z-50 flex flex-col lg:flex-row justify-between items-center py-4 px-12 bg-[#171D2B] shadow-black/10 shadow-[0_10px_30px_-10px_rgba(0,0,0,0.1)] transition-all duration-300">
+  <header
+    id='navbar'
+    class='fixed w-full z-50 flex flex-col lg:flex-row justify-between items-center py-4 px-12 bg-[#171D2B] shadow-black/10 shadow-[0_10px_30px_-10px_rgba(0,0,0,0.1)] transition-all duration-300'>
     <Astronav>
-      <div class="flex w-full lg:w-auto items-center justify-between">
-        <a href="/" class="text-lg flex flex-row items-center gap-1">
-          <svg class="text-green-500 rotate-12" xmlns="http://www.w3.org/2000/svg" width="2em" height="2em" viewBox="0 0 48 48"><g fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="4"><path d="M31 43s-13 1-20-7S4 4 4 4s24-1 32 5s6 23 6 23"/><path d="M44 44s-11.18-8.449-18-16s-10-15-10-15m10 15l1-13m-1 13l-10-1"/></g></svg>
-          <span class="font-medium text-[26px] text-transparent bg-clip-text bg-gradient-to-r from-green-400 to-green-700"> SoftCorp </span>
-        </a>        <div class="block lg:hidden">
-          <MenuIcon class="w-4 h-4 text-white" />
+      <div class='flex w-full lg:w-auto items-center justify-between'>
+        <a href='/' class='text-lg flex flex-row items-center gap-1'>
+          <svg
+            class='text-green-500 rotate-12'
+            xmlns='http://www.w3.org/2000/svg'
+            width='2em'
+            height='2em'
+            viewBox='0 0 48 48'
+            ><g
+              fill='none'
+              stroke='currentColor'
+              stroke-linecap='round'
+              stroke-linejoin='round'
+              stroke-width='4'
+              ><path d='M31 43s-13 1-20-7S4 4 4 4s24-1 32 5s6 23 6 23'
+              ></path><path
+                d='M44 44s-11.18-8.449-18-16s-10-15-10-15m10 15l1-13m-1 13l-10-1'
+              ></path></g
+            ></svg
+          >
+          <span
+            class='font-medium text-[26px] text-transparent bg-clip-text bg-gradient-to-r from-green-400 to-green-700'>
+            SoftCorp
+          </span>
+        </a>
+        <div class='block lg:hidden'>
+          <MenuIcon class='w-4 h-4 text-white' />
         </div>
       </div>
-      <MenuItems class="hidden w-full lg:w-auto mt-2 lg:flex lg:mt-0">
-        <ul class="flex flex-col lg:flex-row lg:gap-3">
+      <MenuItems class='hidden w-full lg:w-auto mt-2 lg:flex lg:mt-0'>
+        <ul class='flex flex-col lg:flex-row lg:gap-3'>
           {
             menuitems.map((item, index) => (
               <>
-                {('children' in item) && item.children && (
+                {'children' in item && item.children && (
                   <Dropdown
                     title={item.title}
                     children={item.children}
@@ -70,19 +95,20 @@ const menuitems = [
                 )}
 
                 {!('children' in item) && (
-                  <li class="group relative">
+                  <li class='group relative'>
                     <a
                       href={item.path}
-                      class={`flex lg:px-3 pt-2 pb-1 items-center text-lg text-white transition-colors duration-300 ${Astro.url.pathname === item.path ? 'active' : ''}`}
-                    >
+                      class={`flex lg:px-3 pt-2 pb-1 items-center text-lg text-white transition-colors duration-300 ${Astro.url.pathname === item.path ? 'active' : ''}`}>
                       <span> {item.title}</span>
                       {'badge' in item && item.badge && (
-                        <span class="ml-1 px-2 py-0.5 text-[10px] animate-pulse font-semibold uppercase text-white bg-indigo-600 rounded-full">
+                        <span class='ml-1 px-2 py-0.5 text-[10px] animate-pulse font-semibold uppercase text-white bg-indigo-600 rounded-full'>
                           New
                         </span>
                       )}
                     </a>
-                    <span class={`absolute bottom-0 left-0 w-0 h-[2px] bg-green-500 transition-all duration-300 group-hover:w-full ${Astro.url.pathname === item.path ? 'w-full' : ''}`}></span>
+                    <span
+                      class={`absolute bottom-0 left-0 w-0 h-[2px] bg-green-500 transition-all duration-300 group-hover:w-full ${Astro.url.pathname === item.path ? 'w-full' : ''}`}
+                    />
                   </li>
                 )}
               </>
@@ -96,21 +122,21 @@ const menuitems = [
 
 <script>
   document.addEventListener('DOMContentLoaded', () => {
-    let prevScrollPos = window.pageYOffset;
-    const navbar = document.getElementById('navbar');
-    
-    window.onscroll = function() {
-      const currentScrollPos = window.pageYOffset;
-      
+    let prevScrollPos = window.pageYOffset
+    const navbar = document.getElementById('navbar')
+
+    window.onscroll = function () {
+      const currentScrollPos = window.pageYOffset
+
       if (navbar) {
         if (prevScrollPos > currentScrollPos) {
-          navbar.style.top = "0";
+          navbar.style.top = '0'
         } else {
-          navbar.style.top = "-100px";
+          navbar.style.top = '-100px'
         }
       }
-      
-      prevScrollPos = currentScrollPos;
+
+      prevScrollPos = currentScrollPos
     }
-  });
+  })
 </script>
