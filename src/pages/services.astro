@@ -1,6 +1,7 @@
 ---
-import Layout from '@layouts/Layout.astro'
+import ServiceLayout from '@layouts/ServiceLayout.astro'
 import Container from '@components/container.astro'
+import Footer from '@components/footer.astro'
 import Sectionhead from '@components/sectionhead.astro'
 import { fade } from 'astro:transitions'
 import ServiceCard from '@components/serviceCard.astro'
@@ -8,40 +9,48 @@ import ServiceCard from '@components/serviceCard.astro'
 const services = [
   {
     title: 'Desarrollo de software empresarial',
-    bg: '#f9b234'
+    bg: '#f9b234',
+    description: `¿Cansado de procesos manuales y repetitivos? Nuestro equipo crea soluciones tecnológicas personalizadas que se adaptan a tu empresa como un guante. Automatizamos tareas, integramos tus sistemas y te proporcionamos herramientas para tomar decisiones más inteligentes. ¡Aumenta tu productividad y alcanza tus objetivos más rápido!`
   },
   {
     title: 'Desarrollo Web',
-    bg: '#3ecd5e'
+    bg: '#3ecd5e',
+    description: `¿Necesitas un sitio web que crezca contigo? Construimos sitios web escalables y fáciles de administrar. Nuestras plataformas te permiten actualizar tu contenido de forma sencilla y gestionar tu presencia en línea de manera eficiente. Además, ofrecemos servicios de mantenimiento para garantizar el correcto funcionamiento de tu sitio web`
   },
   {
     title: 'Servicios Técnicos',
-    bg: '#e44002'
+    bg: '#e44002',
+    description: `¿Tu equipo tecnológico te está dando dolores de cabeza? Nuestros servicios técnicos te ofrecen soluciones rápidas y eficaces a todos tus problemas informáticos. Desde la reparación de computadoras hasta la configuración de redes, contamos con un equipo de expertos altamente capacitado para mantener tu tecnología funcionando al máximo rendimiento.`
   },
   {
     title: 'Auditorias de Sistemas',
-    bg: '#952aff'
+    bg: '#952aff',
+    description: `¿Buscas optimizar el rendimiento de tus sistemas y reducir costos? Nuestras auditorías de sistemas te permiten identificar ineficiencias, cuellos de botella y áreas de mejora en tu infraestructura tecnológica. Te proporcionamos un plan de acción para optimizar tus procesos, aumentar la eficiencia y maximizar tu inversión en tecnología.`
   },
   {
     title: 'Sistema de monitorización',
-    bg: '#cd3e94'
+    bg: '#cd3e94',
+    description: `¿Busca maximizar el rendimiento de sus sistemas y tomar decisiones basadas en datos? Nuestro servicio de monitoreo de sistemas le proporciona información en tiempo real sobre el estado de su infraestructura. Con estos datos, podrá identificar cuellos de botella, optimizar recursos y mejorar la eficiencia de sus operaciones.`
   },
   {
     title: 'Gestion de Base de Datos',
-    bg: '#4c49ea'
+    bg: '#4c49ea',
+    description: `¿Quiere maximizar el rendimiento de sus bases de datos y garantizar la disponibilidad de sus datos? Nuestros servicios de gestión de bases de datos se encargan de optimizar la estructura y el rendimiento de sus bases de datos, asegurando un acceso rápido y confiable a la información.`
   },
   {
     title: 'Sincronizacion de Datos',
-    bg: '#f9b234'
+    bg: '#f9b234',
+    description: `¿Quiere asegurar que sus datos estén siempre actualizados y sean consistentes en todos sus sistemas? Nuestros servicios de sincronización de datos garantizan que los cambios realizados en una base de datos se reflejen automáticamente en todas las demás, eliminando la duplicación de datos y asegurando la integridad de la información.`
   },
   {
     title: 'Proximamente...',
-    bg: '#3ecd5e'
+    bg: '#3ecd5e',
+    description: `Proximamente...`
   }
 ]
 ---
 
-<Layout title='Services'>
+<ServiceLayout title='Services'>
   <main
     transition:animate={fade({ duration: '.3s' })}
     class='service-container'>
@@ -54,143 +63,19 @@ const services = [
         </Fragment>
       </Sectionhead>
 
-      <div class='ag-format-container'>
-        <div class='ag-courses_box'>
+      <div>
+        <div class='flex justify-center gap-4 flex-wrap w-full p-12'>
           {
             services.map((service, index) => (
-              <div
-                class={`ag-courses_item`}
-                onmouseover={`
-              const element = document.querySelectorAll('.ag-courses_item')[${index}];
-              if (element) {
-                element.style.boxShadow = '0px 0px 25px ${service.bg}';
-                element.style.transition = 'all 0.5s ease';
-              }
-            `}
-                onmouseleave={`
-              const element = document.querySelectorAll('.ag-courses_item')[${index}];
-              if (element) {
-                element.style.boxShadow =  '0 10px 8px rgba(0, 0, 0, 0.662)';
-                element.style.transition = 'all 0.5s ease';
-              }
-            `}>
-                <div class='ag-courses-item_link'>
-                  <div
-                    class='ag-courses-item_bg'
-                    style={`background-color: ${service.bg};`}
-                  />
-                  <div class='ag-courses-item_title'>{service.title}</div>
-                </div>
-              </div>
+              <ServiceCard
+                title={service.title}
+                description={service.description}
+              />
             ))
           }
         </div>
-        <ServiceCard
-          class='service-card p-4 w-screen h-full hidden z-20 rounded-lg bg-gray-700/80 fixed left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2 justify-center items-center'
-        />
       </div>
     </Container>
+    <Footer />
   </main>
-</Layout>
-
-<style>
-  .ag-format-container {
-    width: 100%;
-    max-width: 1280px;
-    margin: 0 auto;
-    padding: 0 15px;
-  }
-
-  .ag-courses_box {
-    display: flex;
-    align-items: flex-start;
-    flex-wrap: wrap;
-    padding: 50px 0;
-  }
-
-  .ag-courses_item {
-    flex-basis: calc(33.33333% - 30px);
-    margin: 0 15px 30px;
-    overflow: hidden;
-    border: 2px solid #0f172a;
-    border-radius: 28px;
-    box-shadow: 0 10px 8px rgba(0, 0, 0, 0.662);
-  }
-
-  .ag-courses-item_link {
-    display: block;
-    padding: 30px 20px;
-    background-color: #0c1220;
-    overflow: hidden;
-    position: relative;
-    text-decoration: none;
-  }
-
-  .ag-courses-item_link:hover .ag-courses-item_bg {
-    transform: scale(10);
-  }
-
-  .ag-courses-item_title {
-    min-height: 87px;
-    margin: 0 0 25px;
-    overflow: hidden;
-    font-weight: bold;
-    font-size: 30px;
-    color: #fff;
-    z-index: 2;
-    position: relative;
-  }
-
-  .ag-courses-item_bg {
-    height: 128px;
-    width: 128px;
-    z-index: 1;
-    position: absolute;
-    top: -75px;
-    right: -75px;
-    border-radius: 50%;
-    transition: all 0.5s ease;
-  }
-
-  @media only screen and (max-width: 979px) {
-    .ag-courses_item {
-      flex-basis: calc(50% - 30px);
-    }
-    .ag-courses-item_title {
-      font-size: 24px;
-    }
-  }
-
-  @media only screen and (max-width: 767px) {
-    .ag-format-container {
-      width: 96%;
-    }
-  }
-
-  @media only screen and (max-width: 639px) {
-    .ag-courses_item {
-      flex-basis: 100%;
-    }
-    .ag-courses-item_title {
-      min-height: 72px;
-      line-height: 1;
-      font-size: 24px;
-    }
-    .ag-courses-item_link {
-      padding: 22px 40px;
-    }
-  }
-</style>
-
-<script>
-  const service = document.querySelectorAll('.ag-courses_item')
-  const container = document.querySelector('.service-container')
-  const serviceCard = document.querySelector('.service-card')
-
-  service?.forEach(item =>
-    item.addEventListener('click', () => {
-      console.log('hola')
-      serviceCard?.classList.replace('hidden', 'flex')
-    })
-  )
-</script>
+</ServiceLayout>
