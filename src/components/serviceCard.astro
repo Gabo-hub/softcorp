@@ -1,25 +1,164 @@
 ---
-const { title, description, bg } = Astro.props
+const { title, description, bg } = Astro.props;
 ---
 
-<a href='/contact' class='group relative block max-w-screen-sm h-64'>
-  <span class='absolute inset-0 border-2 border-dashed border-black'></span>
-
-  <div
-    class='relative flex h-full w-[300px] md:w-[500px] transform items-end border-2 border-white
-    bg-[#20325c] transition-transform group-hover:scale-105 p-2 text-gray-200'>
-    <div
-      class='p-4 !pt-0 transition-opacity group-hover:absolute group-hover:opacity-0 sm:p-6 lg:p-8'>
-      <h2 class='mt-4 text-xl font-medium sm:text-2xl'>{title}</h2>
+<li class="container noselect">
+  <a class="canvas" href="/contact">
+    {Array.from({ length: 25 }, (_, i) => (
+      <div class={`tracker tr-${i + 1}`} id={i.toString()}></div>
+    ))}
+    <div id="card" style={`background: ${bg}`}>
+      <p id="prompt" class="text-center">{title}</p>
+      <div class="title">{description}</div>
     </div>
+  </a>
+</li>
 
-    <div
-      class='absolute p-4 opacity-0 transition-opacity group-hover:relative group-hover:opacity-100'>
-      <h3 class='mt-4 text-xl font-medium sm:text-2xl'>{title}</h3>
+<style>
+  :root {
+    --card-bg: #22C25D;
+    --card-shadow: rgba(0, 0, 0, 0.774);
+    --hover-shadow: rgba(0, 0, 0, 0.2);
+    --text-color: rgb(255, 255, 255);
+  }
 
-      <p class='mt-4 text-xs md:text-sm'>
-        {description}
-      </p>
-    </div>
-  </div>
-</a>
+  .container {
+    position: relative;
+    width: 450px;
+    height: 254px;
+    transition: width 200ms, height 200ms;
+  }
+
+  .container:active {
+    width: 500px;
+    height: 245px;
+  }
+
+  #card {
+    position: absolute;
+    inset: 0;
+    z-index: 0;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border-radius: 20px;
+    box-shadow: 0 4px 16px var(--card-shadow);
+    transition: box-shadow 0.3s ease-in-out, transform 0.3s ease-in-out;
+  }
+
+  .container:hover #card {
+    box-shadow: 0 8px 16px var(--hover-shadow);
+    transform: translateY(-5px);
+  }
+
+  .title {
+    opacity: 0;
+    transition: opacity 300ms ease-in-out 100ms;
+    position: absolute;
+    font-size: 20px;
+    margin: 0 10px;
+    text-align: center;
+    color: black;
+  }
+
+  .tracker:hover ~ #card .title {
+    opacity: 1;
+  }
+
+  #prompt {
+    bottom: 8px;
+    left: 12px;
+    z-index: 20;
+    font-size: 35px;
+    font-weight: bold;
+    transition: opacity 300ms ease-in-out;
+    max-width: 1000px;
+    color: var(--text-color);
+  }
+
+  .tracker {
+    position: relative; /* Cambiar a relative para que no se superpongan */
+    z-index: 200;
+    width: 100%; /* Ocupa el 100% del espacio de la celda */
+    height: 100%; /* Ocupa el 100% del espacio de la celda */
+  }
+
+  .tracker:hover {
+    cursor: pointer;
+  }
+
+  .tracker:hover ~ #card #prompt {
+    opacity: 0;
+  }
+
+  .tracker:hover ~ #card {
+    transition: 300ms;
+    filter: brightness(1.1);
+  }
+
+  .canvas {
+    perspective: 800px;
+    inset: 0;
+    z-index: 200;
+    position: absolute;
+    display: grid;
+    grid-template-columns: repeat(5, 1fr);
+    grid-template-rows: repeat(5, 1fr);
+    gap: 0;
+  }
+
+  #card::before {
+    content: "";
+    background-color: var(--card-bg);
+    opacity: 0;
+    width: 105%;
+    height: 105%;
+    border-radius: 20px;
+    position: absolute;
+    z-index: -1;
+    transition: opacity 200ms;
+  }
+  
+  /* Transformaciones para cada tracker */
+  .tr-1:hover ~ #card { transform: rotateX(20deg) rotateY(-10deg) rotateZ(0deg); }
+  .tr-2:hover ~ #card { transform: rotateX(20deg) rotateY(-5deg) rotateZ(0deg); }
+  .tr-3:hover ~ #card { transform: rotateX(20deg) rotateY(0deg) rotateZ(0deg); }
+  .tr-4:hover ~ #card { transform: rotateX(20deg) rotateY(5deg) rotateZ(0deg); }
+  .tr-5:hover ~ #card { transform: rotateX(20deg) rotateY(10deg) rotateZ(0deg); }
+  .tr-6:hover ~ #card { transform: rotateX(10deg) rotateY(-10deg) rotateZ(0deg); }
+  .tr-7:hover ~ #card { transform: rotateX(10deg) rotateY(-5deg) rotateZ(0deg); }
+  .tr-8:hover ~ #card { transform: rotateX(10deg) rotateY(0deg) rotateZ(0deg); }
+  .tr-9:hover ~ #card { transform: rotateX(10deg) rotateY(5deg) rotateZ(0deg); }
+  .tr-10:hover ~ #card { transform: rotateX(10deg) rotateY(10deg) rotateZ(0deg); }
+  .tr-11:hover ~ #card { transform: rotateX(0deg) rotateY(-10deg) rotateZ(0deg); }
+  .tr-12:hover ~ #card { transform: rotateX(0deg) rotateY(-5deg) rotateZ(0deg); }
+  .tr-13:hover ~ #card { transform: rotateX(0deg) rotateY(0deg) rotateZ(0deg); }
+  .tr-14:hover ~ #card { transform: rotateX(0deg) rotateY(5deg) rotateZ(0deg); }
+  .tr-15:hover ~ #card { transform: rotateX(0deg) rotateY(10deg) rotateZ(0deg); }
+  .tr-16:hover ~ #card { transform: rotateX(-10deg) rotateY(-10deg) rotateZ(0deg); }
+  .tr-17:hover ~ #card { transform: rotateX(-10deg) rotateY(-5deg) rotateZ(0deg); }
+  .tr-18:hover ~ #card { transform: rotateX(-10deg) rotateY(0deg) rotateZ(0deg); }
+  .tr-19:hover ~ #card { transform: rotateX(-10deg) rotateY(5deg) rotateZ(0deg); }
+  .tr-20:hover ~ #card { transform: rotateX(-10deg) rotateY(10deg) rotateZ(0deg); }
+  .tr-21:hover ~ #card { transform: rotateX(-20deg) rotateY(-10deg) rotateZ(0deg); }
+  .tr-22:hover ~ #card { transform: rotateX(-20deg) rotateY(-5deg) rotateZ(0deg); }
+  .tr-23:hover ~ #card { transform: rotateX(-20deg) rotateY(0deg) rotateZ(0deg); }
+  .tr-24:hover ~ #card { transform: rotateX(-20deg) rotateY(5deg) rotateZ(0deg); }
+  .tr-25:hover ~ #card { transform: rotateX(-20deg) rotateY(10deg) rotateZ(0deg); }
+
+  .tr-1:hover ~ #card, .tr-2:hover ~ #card, .tr-3:hover ~ #card, .tr-4:hover ~ #card, .tr-5:hover ~ #card,
+  .tr-6:hover ~ #card, .tr-7:hover ~ #card, .tr-8:hover ~ #card, .tr-9:hover ~ #card, .tr-10:hover ~ #card,
+  .tr-11:hover ~ #card, .tr-12:hover ~ #card, .tr-13:hover ~ #card, .tr-14:hover ~ #card, .tr-15:hover ~ #card,
+  .tr-16:hover ~ #card, .tr-17:hover ~ #card, .tr-18:hover ~ #card, .tr-19:hover ~ #card, .tr-20:hover ~ #card,
+  .tr-21:hover ~ #card, .tr-22:hover ~ #card, .tr-23:hover ~ #card, .tr-24:hover ~ #card, .tr-25:hover ~ #card {
+    transition: 0.3s ease-out;
+  }
+
+  .noselect {
+    -webkit-touch-callout: none;
+    -webkit-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
+    user-select: none;
+  }
+</style>
