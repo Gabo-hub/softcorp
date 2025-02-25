@@ -5,41 +5,56 @@ import Footer from '@components/footer.astro'
 import Sectionhead from '@components/sectionhead.astro'
 import { fade } from 'astro:transitions'
 import ServiceCard from '@components/serviceCard.astro'
+import CodeIcon from '@components/icon/CodeIcon.astro'
+import WebDevIcon from '@components/icon/WebDevIcon.astro'
+
+import AuditIcon from '@components/icon/AuditIcon.astro'
+import ChatbotIcon from '@components/icon/ChatbotIcon.astro'
+import IaIcon from '@components/icon/IAIcon.astro'
+import SyncDataIcon from '@components/icon/SyncDataIcon.astro'
+import AutoIcon from '@components/icon/AutoIcon.astro'
 
 const services = [
   {
     title: 'Desarrollo de software empresarial',
     bg: '#f9b234',
+    Icon: CodeIcon,
     description: `¿Cansado de procesos manuales y repetitivos? Nuestro equipo crea soluciones tecnológicas personalizadas que se adaptan a tu empresa como un guante. Automatizamos tareas, integramos tus sistemas y te proporcionamos herramientas para tomar decisiones más inteligentes. ¡Aumenta tu productividad y alcanza tus objetivos más rápido!`
   },
   {
     title: 'Desarrollo Web',
     bg: '#3ecd5e',
+    Icon: WebDevIcon,
     description: `¿Necesitas un sitio web que crezca contigo? Construimos sitios web escalables y fáciles de administrar. Nuestras plataformas te permiten actualizar tu contenido de forma sencilla y gestionar tu presencia en línea de manera eficiente. Además, ofrecemos servicios de mantenimiento para garantizar el correcto funcionamiento de tu sitio web`
   },
   {
-    title: 'Servicios Técnicos',
+    title: 'Automatizaciones',
     bg: '#e44002',
+    icon: AutoIcon,
     description: `¿Tu equipo tecnológico te está dando dolores de cabeza? Nuestros servicios técnicos te ofrecen soluciones rápidas y eficaces a todos tus problemas informáticos. Desde la reparación de computadoras hasta la configuración de redes, contamos con un equipo de expertos altamente capacitado para mantener tu tecnología funcionando al máximo rendimiento.`
   },
   {
     title: 'Auditorias de Sistemas',
     bg: '#952aff',
+    Icon: AuditIcon,
     description: `¿Buscas optimizar el rendimiento de tus sistemas y reducir costos? Nuestras auditorías de sistemas te permiten identificar ineficiencias, cuellos de botella y áreas de mejora en tu infraestructura tecnológica. Te proporcionamos un plan de acción para optimizar tus procesos, aumentar la eficiencia y maximizar tu inversión en tecnología.`
   },
   {
-    title: 'Sistema de monitorización',
+    title: 'Desarrollo de ChatBots',
     bg: '#cd3e94',
+    Icon: ChatbotIcon,
     description: `¿Busca maximizar el rendimiento de sus sistemas y tomar decisiones basadas en datos? Nuestro servicio de monitoreo de sistemas le proporciona información en tiempo real sobre el estado de su infraestructura. Con estos datos, podrá identificar cuellos de botella, optimizar recursos y mejorar la eficiencia de sus operaciones.`
   },
   {
-    title: 'Gestion de Base de Datos',
+    title: 'Implementación de IA',
     bg: '#4c49ea',
+    Icon: IaIcon,
     description: `¿Quiere maximizar el rendimiento de sus bases de datos y garantizar la disponibilidad de sus datos? Nuestros servicios de gestión de bases de datos se encargan de optimizar la estructura y el rendimiento de sus bases de datos, asegurando un acceso rápido y confiable a la información.`
   },
   {
     title: 'Sincronizacion de Datos',
     bg: '#f9b234',
+    Icon: SyncDataIcon,
     description: `¿Quiere asegurar que sus datos estén siempre actualizados y sean consistentes en todos sus sistemas? Nuestros servicios de sincronización de datos garantizan que los cambios realizados en una base de datos se reflejen automáticamente en todas las demás, eliminando la duplicación de datos y asegurando la integridad de la información.`
   },
   {
@@ -51,28 +66,73 @@ const services = [
 ---
 
 <ServiceLayout title='Services'>
-  <main
-    transition:animate={fade({ duration: '.3s' })}
-    class='service-container'>
+  <main transition:animate={fade({ duration: '.3s' })} class='min-h-screen'>
     <Container>
-      <Sectionhead>
-        <Fragment slot='title'>Servicios</Fragment>
-        <Fragment slot='desc'>
-          Descubra nuestra gama de servicios diseñados para satisfacer sus
-          necesidades y impulsar su éxito.
-        </Fragment>
-      </Sectionhead>
+      <div class='py-16 md:py-20'>
+        <Sectionhead>
+          <Fragment slot='title'>
+            <span class='text-4xl md:text-5xl font-bold text-emerald-50'>
+              Servicios
+            </span>
+          </Fragment>
+          <Fragment slot='desc'>
+            <p
+              class='text-lg md:text-xl text-emerald-100/80 mt-4 max-w-3xl mx-auto'>
+              Descubra nuestra gama de servicios diseñados para satisfacer sus
+              necesidades y impulsar su éxito.
+            </p>
+          </Fragment>
+        </Sectionhead>
 
-      <div>
-        <div class='flex justify-center gap-4 flex-wrap w-full p-12'>
-          {
-            services.map((service, index) => (
-              <ServiceCard
-                title={service.title}
-                description={service.description}
-              />
-            ))
-          }
+        <div class='mt-16'>
+          <div
+            class='grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 px-4'>
+            {
+              services.map((service, index) => {
+                const ServiceIcon = service.Icon
+                return (
+                  <a
+                    href='/contact'
+                    class='group relative block bg-gray-800 border-white border-2 rounded-xl overflow-hidden transition-all duration-300 hover:scale-[1.02] hover:shadow-xl hover:shadow-emerald-500/20'>
+                    <div class='absolute inset-0 bg-gradient-to-r from-emerald-600/10 to-teal-600/10 opacity-0 group-hover:opacity-100 transition-opacity' />
+                    <div class='relative p-6 h-[300px] flex flex-col'>
+                      <div class='flex items-center gap-4 mb-4'>
+                        {ServiceIcon && (
+                          <div class='p-3 rounded-lg bg-emerald-500/10'>
+                            <ServiceIcon class='w-6 h-6 text-emerald-400' />
+                          </div>
+                        )}
+                        <h2 class='text-xl font-semibold text-emerald-50 group-hover:text-emerald-400 transition-colors'>
+                          {service.title}
+                        </h2>
+                      </div>
+
+                      <div class='relative flex-1'>
+                        <div class='transition-all duration-300 group-hover:opacity-0 group-hover:translate-y-4'>
+                          <div class='h-1 w-12 bg-emerald-500/50 mb-4' />
+                          <p class='text-sm text-emerald-100/60'>
+                            Haz clic para más información
+                          </p>
+                        </div>
+
+                        <div class='absolute inset-0 opacity-0 translate-y-4 group-hover:opacity-100 group-hover:translate-y-0 transition-all duration-300'>
+                          <p class='text-sm md:text-base text-emerald-100/90 leading-relaxed'>
+                            {service.description}
+                          </p>
+                        </div>
+                      </div>
+
+                      <div class='mt-4 flex justify-end'>
+                        <span class='text-emerald-400 text-sm group-hover:translate-x-2 transition-transform duration-300'>
+                          Contactar →
+                        </span>
+                      </div>
+                    </div>
+                  </a>
+                )
+              })
+            }
+          </div>
         </div>
       </div>
     </Container>
