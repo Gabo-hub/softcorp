@@ -1,6 +1,5 @@
 ---
 import { getCollection } from 'astro:content'
-import { Picture } from 'astro:assets'
 import Layout from '@layouts/Layout.astro'
 import Container from '@components/container.astro'
 import Sectionhead from '@components/sectionhead.astro'
@@ -24,17 +23,22 @@ publishedBlogEntries.sort(function (a, b) {
       <Sectionhead>
         <Fragment slot='title'>Blog</Fragment>
         <Fragment slot='desc'>
-          Descubre artículos perspicaces sobre estrategias para startups, innovaciones tecnológicas y tendencias de la industria. Nuestro blog ofrece consejos de expertos para ayudar a emprendedores y entusiastas de la tecnología a mantenerse a la vanguardia.        </Fragment>
+          Descubre artículos perspicaces sobre estrategias para startups,
+          innovaciones tecnológicas y tendencias de la industria. Nuestro blog
+          ofrece consejos de expertos para ayudar a emprendedores y entusiastas
+          de la tecnología a mantenerse a la vanguardia.
+        </Fragment>
       </Sectionhead>
       <div class='mt-16'>
-        <ul class='grid grid-cols-1 sm:grid-cols-2 gap-6 max-w-screen-xl mx-auto'>
+        <ul
+          class='grid grid-cols-1 sm:grid-cols-2 gap-6 max-w-screen-xl mx-auto'>
           {
             publishedBlogEntries.map((blogPostEntry, index) => {
               return (
                 <CardsBlog
                   index={index}
                   card={{
-                    href: "/blog/"+blogPostEntry.slug,
+                    href: '/blog/' + blogPostEntry.slug,
                     image: blogPostEntry.data.image,
                     title: blogPostEntry.data.title,
                     status: blogPostEntry.data.category,
@@ -43,7 +47,7 @@ publishedBlogEntries.sort(function (a, b) {
                     ...blogPostEntry
                   }}
                 />
-              );
+              )
             })
           }
         </ul>

@@ -9,6 +9,7 @@ import react from "@astrojs/react";
 // https://astro.build/config
 export default defineConfig({
   site: "https://astroship.web3templates.com",
+  output: 'server',
   integrations: [tailwind(), mdx(), sitemap(), icon(), react()],
   vite: {
     ssr: {
