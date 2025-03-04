@@ -10,8 +10,6 @@ export interface Props {
   title: string
 }
 
-const apiKey = import.meta.env.PUBLIC_API_KEY
-
 const canonicalURL = new URL(Astro.url.pathname, Astro.site).toString()
 
 const resolvedImageWithDomain = new URL(
@@ -59,33 +57,6 @@ const makeTitle = title
       is:inline
       src='https://cdn.jsdelivr.net/npm/@emailjs/browser@4/dist/email.min.js'
     ></script>
-    <script is:inline define:vars={{ apiKey }}>
-      ;(function () {
-        // https://dashboard.emailjs.com/admin/account
-        emailjs.init({
-          publicKey: apiKey
-        })
-      })()
-    </script>
-    <script is:inline>
-      window.onload = function () {
-        document
-          .getElementById('contact-form')
-          .addEventListener('submit', function (event) {
-            event.preventDefault()
-            // these IDs from the previous steps
-            console.log(this)
-            emailjs.sendForm('service_x7zgeyp', 'template_nu83u5j', this).then(
-              res => {
-                console.log('SUCCESS!', res)
-              },
-              error => {
-                console.log('FAILED...', error)
-              }
-            )
-          })
-      }
-    </script>
   </head>
   <body class='bg-[#0f172a] w-full min-h-screen flex flex-col'>
     <Navbar />
