@@ -1,4 +1,4 @@
-// Validación del formulario
+// Validación del formulario nuevo
 import emailjs from '@emailjs/browser'
 const apiKey = import.meta.env.PUBLIC_API_KEY
 
