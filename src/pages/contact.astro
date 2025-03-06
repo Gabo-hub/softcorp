@@ -1,11 +1,10 @@
 ---
-import Contactform from '@components/contactform.astro'
 import Container from '@components/container.astro'
+import ContactForm from '@components/contactform.astro'
 import Sectionhead from '@components/sectionhead.astro'
 import Layout from '@layouts/Layout.astro'
 import { Icon } from 'astro-icon/components'
 import { slide } from 'astro:transitions'
-
 /*
           <div class="flex items-center mt-2 space-x-2 text-gray-600">
             <Icon class="text-gray-400 w-4 h-4" name="uil:map-marker" />
@@ -18,17 +17,23 @@ import { slide } from 'astro:transitions'
   <Container>
     <main transition:animate={slide({ duration: '.5s' })}>
       <Sectionhead>
-        <Fragment slot='title'>Contacto</Fragment>
-        <Fragment slot='desc'>Estamos aquí para ayudar.</Fragment>
+        <Fragment slot='title'
+          ><span class='text-emerald-50'>Contacto</span></Fragment
+        >
+        <Fragment slot='desc'
+          ><span class='text-emerald-50'>Estamos aquí para ayudar.</span
+          ></Fragment
+        >
       </Sectionhead>
 
       <section
-        class='contenedor-form grid md:grid-cols-2 gap-10 mx-auto max-w-[90%] p-16 mt-16'>
+        class='contenedor-form grid md:grid-cols-2 gap-10 text-emerald-50 mx-auto max-w-[95%] sm:max-w-[90%] p-4 sm:p-8 md:p-12 lg:p-16 mt-8 sm:mt-12 md:mt-16'>
         <div>
-          <h2 class='font-medium text-4xl text-white'>
+          <h2
+            class='font-medium text-2xl sm:text-3xl md:text-4xl text-emerald-50'>
             Contacta a <span style='color: #1E874B;'>SoftCorp</span>
           </h2>
-          <p class='text-lg leading-relaxed text-white mt-3'>
+          <p class='text-base sm:text-lg leading-relaxed mt-3 text-emerald-50'>
             ¿Necesitas soluciones tecnológicas para tu empresa? En SoftCorp
             estamos listos para ayudarte. Ya sea que busques desarrollo de
             software empresarial, desarrollo web, servicios técnicos, auditorías
@@ -37,40 +42,65 @@ import { slide } from 'astro:transitions'
             tu negocio con tecnología de vanguardia.
           </p>
           <div class='mt-5'>
-            <div class='flex items-center mt-2 space-x-2 text-white'>
+            <div class='flex items-center mt-2 space-x-2 text-emerald-50'>
               <Icon class='text-gray-400 w-4 h-4' name='uil:envelope' />
               <a
                 href='mailto:softcorpve@gmail.com'
-                class='text-[#46D3D3] text-xl'>softcorpve@gmail.com</a
+                class='text-[#46D3D3] text-base sm:text-lg md:text-xl break-all'
+                >softcorpve@gmail.com</a
               >
             </div>
-            <div class='flex items-center mt-2 space-x-2 text-white'>
+            <div class='flex items-center mt-2 space-x-2 text-emerald-50'>
               <Icon class='text-gray-400 w-4 h-4' name='uil:phone' />
-              <a href='tel:+58 (426) 411 2501' class='text-[#46D3D3] text-xl'
+              <a
+                href='tel:+58 (426) 411 2501'
+                class='text-[#46D3D3] text-base sm:text-lg md:text-xl'
                 >+58 (426) 411 2501</a
               >
             </div>
           </div>
         </div>
-        <div>
-          <Contactform />
+        <div class='mt-8 md:mt-0'>
+          <ContactForm />
         </div>
       </section>
     </main>
   </Container>
 </Layout>
 
+<!-- Importar el script externo para el formulario -->
+<script src='/src/js/contact-form.js'></script>
+
 <style>
   .contenedor-form {
-    border-radius: 42px;
+    border-radius: 24px;
     background: linear-gradient(145deg, #131e36, #131e36);
     box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
     color: black;
     transition: all 0.3s ease;
   }
 
+  @media (min-width: 640px) {
+    .contenedor-form {
+      border-radius: 32px;
+    }
+  }
+
+  @media (min-width: 768px) {
+    .contenedor-form {
+      border-radius: 42px;
+    }
+  }
+
   .contenedor-form:hover {
     transform: translateY(-5px);
     box-shadow: 0 15px 40px rgba(30, 135, 75, 0.2);
+  }
+
+  /* Desactivar el efecto hover en dispositivos táctiles */
+  @media (hover: none) {
+    .contenedor-form:hover {
+      transform: none;
+    }
   }
 </style>

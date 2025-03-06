@@ -1,36 +1,106 @@
 ---
-import { getCollection } from 'astro:content'
-import { Picture } from 'astro:assets'
 import Layout from '@layouts/Layout.astro'
 import Container from '@components/container.astro'
-import Sectionhead from '@components/sectionhead.astro'
 import Person from '@components/ui/personIcon.astro'
 import { slide } from 'astro:transitions'
-import EmployesCard from '@components/employesCard.astro'
 ---
 
 <Layout title='About'>
   <Container>
-    <div
-      class='flex flex-col justify-center items-center mb-24'
-      transition:animate={slide({ duration: '.5s' })}>
-      <Sectionhead>
-        <Fragment slot='title'>Nosotros</Fragment>
-        <Fragment slot='desc'>Somos un equipo pequeño y apasionado.</Fragment>
-      </Sectionhead>
-      <p
-        class='max-w-4xl mx-auto mt-16 text-xl leading-relaxed text-semibold text-gray-200 text-pretty'>
-        Somos un equipo superdinámico y apasionado, compuesto por talentosos
-        programadores, que fusiona creatividad e ingeniería. Nuestro enfoque,
-        basado en la exploración de nuevas tecnologías y el aprendizaje
-        continuo, nos permite materializar ideas audaces y originales. Nuestro
-        principal objetivo es superar las expectativas del cliente creando
-        soluciones tecnológicas de vanguardia.
-      </p>
+    <div class='relative min-h-screen'>
+      <div
+        class='relative py-12 md:py-20'
+        transition:animate={slide({ duration: '.5s' })}>
+        <!-- Sección Hero -->
+        <div class='text-center mb-16'>
+          <h1 class='text-4xl md:text-5xl font-bold mb-4 text-emerald-50'>
+            Nosotros
+          </h1>
+          <div class='h-1 w-20 bg-emerald-500 mx-auto mb-6'></div>
+          <p class='text-lg md:text-xl text-emerald-100/80'>
+            Somos un equipo pequeño y apasionado.
+          </p>
+        </div>
 
-      <div class='flex gap-12 py-24'>
-        <EmployesCard name='Jhonny Ramos' role='Desarrollador FullStack' />
-        <EmployesCard name='Gabriel Gomez' role='Desarrollador FullStack' />
+        <!-- Descripción -->
+        <div class='max-w-4xl mx-auto px-4 mb-20'>
+          <div class='relative group'>
+            <div
+              class='absolute -inset-1 bg-gradient-to-r from-emerald-600 to-teal-600 rounded-lg blur opacity-25 group-hover:opacity-40 transition duration-1000'>
+            </div>
+            <div
+              class='relative bg-gray-900 ring-1 ring-emerald-900/5 rounded-lg p-6 md:p-8'>
+              <p
+                class='text-lg leading-relaxed text-emerald-100/90 text-pretty'>
+                Somos un equipo superdinámico y apasionado, compuesto por
+                talentosos programadores, que fusiona creatividad e ingeniería.
+                Nuestro enfoque, basado en la exploración de nuevas tecnologías
+                y el aprendizaje continuo, nos permite materializar ideas
+                audaces y originales. Nuestro principal objetivo es superar las
+                expectativas del cliente creando soluciones tecnológicas de
+                vanguardia.
+              </p>
+            </div>
+          </div>
+        </div>
+
+        <!-- Sección Equipo -->
+        <div class='mb-20'>
+          <h2
+            class='text-2xl md:text-3xl font-bold text-center mb-12 text-emerald-50'>
+            Conoce a Nuestro Equipo
+          </h2>
+
+          <div class='grid md:grid-cols-2 gap-8 max-w-5xl mx-auto px-4'>
+            {
+              [
+                { name: 'Jhonny Ramos', role: 'Desarrollador FullStack' },
+                { name: 'Gabriel Gomez', role: 'Desarrollador FullStack' }
+              ].map(member => (
+                <div class='group relative'>
+                  <div class='absolute -inset-0.5 bg-gradient-to-r from-emerald-600 to-teal-600 rounded-xl blur opacity-25 group-hover:opacity-75 transition duration-500' />
+                  <div class='relative bg-gray-900 ring-1 ring-emerald-900/5 rounded-xl p-6'>
+                    <div class='flex items-center gap-4'>
+                      <div class='w-16 h-16 rounded-full bg-emerald-600/20 flex items-center justify-center'>
+                        <Person class='w-8 h-8 text-emerald-500' />
+                      </div>
+                      <div>
+                        <h3 class='text-xl font-semibold text-emerald-50'>
+                          {member.name}
+                        </h3>
+                        <p class='text-emerald-300/80'>{member.role}</p>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              ))
+            }
+          </div>
+        </div>
+
+        <!-- Estadísticas -->
+        <!-- <div class='max-w-6xl mx-auto px-4'>
+          <div class='grid grid-cols-2 md:grid-cols-4 gap-6 md:gap-8'>
+            {
+              [
+                { number: '5+', label: 'Años de Experiencia' },
+                { number: '50+', label: 'Proyectos Exitosos' },
+                { number: '100%', label: 'Satisfacción' },
+                { number: '24/7', label: 'Soporte' }
+              ].map(stat => (
+                <div class='relative group'>
+                  <div class='absolute -inset-0.5 bg-gradient-to-r from-emerald-600 to-teal-600 rounded-lg blur opacity-25 group-hover:opacity-50 transition duration-500' />
+                  <div class='relative bg-gray-900/50 backdrop-blur-sm rounded-lg p-6 text-center'>
+                    <div class='text-3xl md:text-4xl font-bold text-emerald-400 mb-2'>
+                      {stat.number}
+                    </div>
+                    <div class='text-sm text-emerald-100/80'>{stat.label}</div>
+                  </div>
+                </div>
+              ))
+            }
+          </div>
+        </div> -->
       </div>
     </div>
   </Container>
